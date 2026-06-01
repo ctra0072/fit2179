@@ -3,7 +3,7 @@
   "title": "Beef cattle number by Australian state (2024-2025)",
 
   "data": {
-    "url": "./Data/cattleStates.csv",
+    "url": "../Data/cattleStates.csv",
     "format": { "type": "csv" }
   },
 
