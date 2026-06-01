@@ -9,7 +9,7 @@
   "background": "transparent",
 
   "data": {
-    "url": "../Js/australia.json",
+    "url": "./Js/australia.json",
     "format": {
       "type": "topojson",
       "feature": "STE_2021_AUST_GDA2020"
@@ -21,7 +21,7 @@
       "lookup": "properties.STE_NAME21",
       "from": {
         "data": {
-          "url": "../Data/AgriculturalAreaState.csv"
+          "url": "./Data/AgriculturalAreaState.csv"
         },
         "key": "State",
         "fields": ["AgriculturalArea"]
