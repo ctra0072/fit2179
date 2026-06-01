@@ -3,7 +3,7 @@
   "title": "Proportion of people consuming selected grain-based dishes (mean of 95% CI)",
 
   "data": {
-    "url": "../Data/consumptionCerealBased.csv",
+    "url": "./Data/consumptionCerealBased.csv",
     "format": { "type": "csv" }
   },
   "background":"transparent",

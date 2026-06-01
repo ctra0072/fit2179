@@ -3,7 +3,7 @@
   "title": "Livestock product values in Australia (2020–21 to 2024–25)",
 
   "data": {
-    "url": "../Data/livestockValue.csv",
+    "url": "./Data/livestockValue.csv",
     "format": { "type": "csv" }
   },
 

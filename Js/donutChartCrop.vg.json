@@ -3,7 +3,7 @@
   "title": "Distribution of winter crop production sold 2024-25",
 
   "data": {
-    "url": "../Data/CropTypes.csv",
+    "url": "./Data/CropTypes.csv",
     "format": { "type": "csv" }
   },
 

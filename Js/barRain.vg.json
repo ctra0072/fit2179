@@ -3,7 +3,7 @@
   "title": "Average rainfall by Australian state (2025)",
 
   "data": {
-    "url": "../Data/rainByState2025.csv",
+    "url": "./Data/rainByState2025.csv",
     "format": { "type": "csv" }
   },
 

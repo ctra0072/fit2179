@@ -4,7 +4,7 @@
   "background":"transparent",
 
   "data": {
-    "url": "../Data/LandUse.csv",
+    "url": "./Data/LandUse.csv",
     "format": { "type": "csv" }
   },
 

@@ -12,7 +12,7 @@
   "background": "transparent",
 
   "data": {
-    "url": "../Data/FarmlandPractices.csv"
+    "url": "./Data/FarmlandPractices.csv"
   },
 
   "mark": {

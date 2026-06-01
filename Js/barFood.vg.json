@@ -4,7 +4,7 @@
 
 
   "data": {
-    "url": "../Data/consumeFoodPercentages.csv",
+    "url": "./Data/consumeFoodPercentages.csv",
     "format": { "type": "csv" }
   },
   "background":"transparent",
