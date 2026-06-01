@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Proportion of people consuming different food types (mean of 95% CI) by age group",
+
+
+  "data": {
+    "url": "../Data/consumeFoodPercentages.csv",
+    "format": { "type": "csv" }
+  },
+  "background":"transparent",
+  "transform": [
+    {
+      "calculate": "trim(datum['Age Group'])",
+      "as": "AgeGroup"
+    },
+    {
+      "filter": "datum.AgeGroup === 'Children 2–17 years' || datum.AgeGroup === 'Adults 18 years and over'"
+    },
+    {
+      "calculate": "(toNumber(datum['CI Low (%)']) + toNumber(datum['CI High (%)'])) / 2",
+      "as": "Mean"
+    }
+  ],
+
+  "facet": {
+    "field": "AgeGroup",
+    "type": "nominal"
+  },
+
+  "spec": {
+    "width": 400,
+    "height": 250,
+    "mark": "bar",
+    "encoding": {
+      "y": {
+        "field": "Food",
+        "type": "nominal",
+        "sort": "-x"
+      },
+      "x": {
+        "field": "Mean",
+        "type": "quantitative",
+        "title": "Proportion (%)"
+      }
+    }
+  }
+}

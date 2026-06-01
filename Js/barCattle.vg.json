@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Beef cattle number by Australian state (2024-2025)",
+
+  "data": {
+    "url": "../Data/cattleStates.csv",
+    "format": { "type": "csv" }
+  },
+
+  "width": 450,
+  "height": 260,
+  "background":"transparent",
+
+  "mark": {
+    "type": "bar",
+    "tooltip": true
+  },
+
+  "encoding": {
+    "x": {
+      "field": "State",
+      "type": "nominal",
+      "axis": {
+        "labelAngle": -35,
+        "labelAlign": "right",
+        "labelBaseline": "middle"
+      }
+    },
+
+    "y": {
+      "field": "Beef_Cattle_Number",
+      "type": "quantitative",
+      "axis": {
+        "title": "Beef Cattle Number ('000)"
+      }
+    },
+
+    "tooltip": [
+      { "field": "State", "type": "nominal" },
+      { "field": "Beef_Cattle_Number", "type": "quantitative", "title": "Beef Cattle" }
+    ]
+  }
+}

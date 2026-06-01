@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "title": "Agricultural Land Area by State (2023)",
+  "projection": {
+    "type": "equirectangular"
+  },
+  "background": "transparent",
+
+  "data": {
+    "url": "../Js/australia.json",
+    "format": {
+      "type": "topojson",
+      "feature": "STE_2021_AUST_GDA2020"
+    }
+  },
+
+  "transform": [
+    {
+      "lookup": "properties.STE_NAME21",
+      "from": {
+        "data": {
+          "url": "../Data/AgriculturalAreaState.csv"
+        },
+        "key": "State",
+        "fields": ["AgriculturalArea"]
+      }
+    },
+    {
+      "calculate": "toNumber(datum.AgriculturalArea)",
+      "as": "Agricultural Land (ha)"
+    }
+  ],
+
+  "mark": {
+    "type": "geoshape",
+    "stroke": "transparent"
+  },
+
+  "encoding": {
+    "color": {
+      "field": "Agricultural Land (ha)",
+      "type": "quantitative",
+      "scale": {
+        "scheme": "greens"
+      },
+      "title": "Agricultural Land (ha)"
+    },
+
+    "tooltip": [
+      {
+        "field": "properties.STE_NAME21",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "AgriculturalArea",
+        "type": "quantitative",
+        "title": "Agricultural Land (ha)",
+        "format": ","
+      }
+    ]
+  }
+}

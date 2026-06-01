@@ -1,0 +1,49 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 250,
+    "title": "Canola Production Sold by state (2024-2025)",
+    "projection": {
+        "type": "equirectangular"
+    },
+    "background":"transparent",
+    "data": {
+        "url": "../Js/australia.json",
+        "format": {
+            "type": "topojson",
+            "feature": "STE_2021_AUST_GDA2020"
+        }
+    },
+    "transform": [
+    {"lookup": "properties.STE_NAME21", "from": {"data": {"url":"../Data/Canola.csv"}, "key":"State", "fields": ["2024_25"] }
+    }, {"calculate": "toNumber(datum['2024_25']) + 0.1", "as": "Canola Production Sold"}],
+    "mark": {
+        "type": "geoshape"
+
+    },
+
+    "encoding": {
+            "color": {
+                "field": "Canola Production Sold",
+                "type": "quantitative",
+                "scale": {
+                 "type": "threshold",
+                 "domain": [100,500,1500, 2500],
+                 "range": ["#fdbe85","#fda65f","#fd8d3c","#e6550d","#a63603"]
+
+      }
+    },
+    "tooltip": [
+      {
+        "field": "properties.STE_NAME21",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "2024_25",
+        "type": "quantitative",
+        "title": "Canola ('000 tonnes)"
+      }
+    ]
+    }
+}

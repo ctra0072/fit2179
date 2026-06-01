@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Distribution of winter crop production sold 2024-25",
+
+  "data": {
+    "url": "../Data/CropTypes.csv",
+    "format": { "type": "csv" }
+  },
+
+  "width": 400,
+  "height": 400,
+  "background":"transparent",
+
+  "mark": {
+    "type": "arc",
+    "innerRadius": 80,
+    "outerRadius": 150,
+    "tooltip": true
+  },
+
+  "encoding": {
+    "theta": {
+      "field": "Production",
+      "type": "quantitative"
+    },
+
+    "color": {
+      "field": "Crop",
+      "type": "nominal",
+      "scale": {
+        "scheme": "category20"
+      }
+    },
+
+    "tooltip": [
+      {
+        "field": "Crop",
+        "type": "nominal"
+      },
+      {
+        "field": "Production",
+        "type": "quantitative",
+        "format": ",",
+        "title": "Production (000 tonnes)"
+      }
+    ]
+  },
+
+  "view": {
+    "stroke": null
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "Tillage practices in Australia over time (1995–2011)",
+    "fontSize": 16,
+    "anchor": "middle"
+  },
+  "padding": 30,
+  "width": 800,
+  "height": 500,
+  "background": "transparent",
+
+  "data": {
+    "url": "../Data/FarmlandPractices.csv"
+  },
+
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone"
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year"
+    },
+
+    "y": {
+     "field": "Percentage",
+     "type": "quantitative",
+     "stack": "normalize",
+     "title": "Percentage of Land (%)",
+     "sort": "descending"
+    },
+
+    "color": {
+      "field": "Practice",
+      "type": "nominal",
+      "title": "Tillage Practice",
+      "scale": {
+        "domain": [
+          "No cultivation",
+          "1–2 cultivations",
+          "3+ cultivations"
+        ]
+      }
+    },  
+
+    "tooltip": [
+      {"field": "Year", "type": "ordinal"},
+      {"field": "Practice", "type": "nominal"},
+      {"field": "Percentage", "type": "quantitative"}
+    ]
+  },
+
+  "config": {
+    "legend": {
+      "labelFontSize": 16,
+      "titleFontSize": 18
+    }
+  }
+}

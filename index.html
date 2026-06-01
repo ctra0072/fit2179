@@ -1,12 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Title for DV2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+    <link rel="stylesheet" href="css/layout.css">
+    <title>Agriculture in Australia</title>
 </head>
+
+
 <body>
-  <h1>Big Title</h1>
-  <h2>small title</h2>
-  <h3>small text</h3>
+  <!-- container of whole thing -->
+  <div class="container">
+    <!-- Hero section -->
+    <header class="hero">
+      <p>FIT2179 Data Visualisation 2</p>
+      <h1><span class="bigA">Agriculture</span>
+        <br> in Australia</h1>
+      <div class="underHero">
+        <h2>What's happening on half of Australian land area?</h2>
+        <p>Exploring the 2 main parts of Australian agriculture: Livestock and Crop Production</p>
+      </div>      
+    </header>
+
+    <!-- Introduction -->
+      <p>--The Overview--</p>
+      <div class="IntroSection">
+        <h2>Where's the Agricultural Land?</h2>
+        <div class="diagramWrapper">
+          <div id="map1"></div>
+          <script type="text/javascript">
+          var mapLand = "Js/mapALand.vg.json";
+          vegaEmbed('#map1', mapLand).then(function(result) {
+          }).catch(console.error);
+          </script>
+        </div>
+        <div class="pure-g">
+          <div class="pure-u-1-2">
+            <p>The numbers are huge, but to put it into perspective, we need to see the ratio of agricultural land to non-agricultural land.
+              <br><br> The stacked bar chart shows that agricultural land consistently takes up more than <span class="annotate">50% of all Australian land.</span>
+            </p>
+          </div>
+          <div class="pure-u-1-2">
+              <div id="StackedBar"></div>
+              <script type="text/javascript">
+              var bar = "Js/stackedBarLandUse.vg.json";
+              vegaEmbed('#StackedBar', bar, {actions: false, tooltip: true}).then(function(result) {
+              }).catch(console.error);
+              </script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="pure-u-1-2">
+              <div id="barRain"></div>
+              <script type="text/javascript">
+              var bar2 = "Js/barRain.vg.json";
+              vegaEmbed('#barRain', bar2).then(function(result) {
+              }).catch(console.error);
+              </script>
+          </div>
+          <div class="pure-u-1-2">
+            <p>
+              It is often assumed that higher rainfall would correspond to greater agricultural land use. 
+              <br>However, the bar chart shows this is <span class="annotate">not a strong relationship. </span>
+              <br>Agricultural land distribution is influenced by more than just rainfall, including soil type, land management, and economic factors.
+            </p>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="pure-u-1-2">
+            <p>
+              Here, we can see the distribution of what agricultural land is being used for.
+              <br><br> <span class="annotate">Over 90%</span> of agricultural land is for grazing, with only 8.6% being used for cropping.
+            </p>
+          </div>
+          <div class="pure-u-1-2">
+            <div class="diagramWrapper">
+              <div id="landPie"></div>
+              <script type="text/javascript">
+              var pie = "Js/pieAgriculturalLand.vg.json";
+              vegaEmbed('#landPie', pie, {actions: false, tooltip: true}).then(function(result) {
+              }).catch(console.error);
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Crop Production -->
+    <p>--Crop Products--</p>
+    <div class="CropSection">
+      <h2>How Crop Production Changed and Stabilised Over Time, Key Crops</h2>
+      <div class="diagramWrapper">
+        <div id="stackedArea"></div>
+        <script type="text/javascript">
+        var farmland = "Js/stackedArea.vg.json";
+        vegaEmbed('#stackedArea', farmland).then(function(result) {
+        }).catch(console.error);
+        </script> 
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <p>The stacked area chart above shows a gradual <br>shift toward reduced cultivation intensity, with “no cultivation” becoming more dominant. 
+            <br><br>This reflects changing land management practices that prioritise soil conservation and long-term productivity.
+          </p>
+        </div>
+        <div class="pure-u-1-2">
+          <p>
+            This can be seen in the <span id="blue">blue section</span> of the chart. "No cultivation" took up only <span class="annotate">20.9%</span> in 1995, but rose to <span class="annotate">73.6%</span> as of 2011.
+          </p>
+        </div>        
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <p>
+            From this donut chart, wheat is the dominant winter crop, accounting for<span class="annotate">56.9%</span> of winter crop production sold in 2024–25.
+            <br><br> Below, we examine the distribution of crop production across Australian states, focusing on wheat and canola.
+          </p>
+        </div>
+        <div class="pure-u-1-2">
+          <div class="diagramWrapper">
+            <div id="cropDonut"></div>
+            <script type="text/javascript">
+            var donut = "Js/donutChartCrop.vg.json";
+            vegaEmbed('#cropDonut', donut, {actions: false, tooltip: true}).then(function(result) {
+            }).catch(console.error);
+            </script>
+          </div>          
+        </div>
+      </div>
+      <div class="pure-g">    
+        <div class="pure-u-1-2">
+            <div id="map2"></div>
+            <script type="text/javascript">
+            var mapWheat = "Js/mapWheat.vg.json";
+            vegaEmbed('#map2', mapWheat).then(function(result) {
+            }).catch(console.error);
+            </script>
+        </div>
+        <div class="pure-u-1-2">
+            <div id="map3"></div>
+            <script type="text/javascript">
+            var mapCanola = "Js/mapCanola.vg.json";
+            vegaEmbed('#map3', mapCanola).then(function(result) {
+            }).catch(console.error);
+            </script>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <p>The very first map showed that Queensland has the largest agricultural land area, but its crop production is really low. Why is this the case?
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Livestock Product -->
+    <p>--Livestock Product--</p>
+    <div class="LivestockSection">
+      <h2>The Cows</h2>
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <p>
+            The line chart shows that cattle and calves have consistently been the dominant livestock product over time,
+            <br>with values <span class="annotate">more than double</span> those of any other product.
+          </p>
+        </div>
+        <div class="pure-u-1-2">
+          <div class="diagramWrapper">
+              <div id="lineLivestock"></div>
+              <script type="text/javascript">
+              var line = "Js/lineLivestock.vg.json";
+              vegaEmbed('#lineLivestock', line).then(function(result) {
+              }).catch(console.error);
+              </script>
+          </div>
+        </div>
+      </div> 
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="diagramWrapper">
+              <div id="barCattle"></div>
+              <script type="text/javascript">
+              var bar3 = "Js/barCattle.vg.json";
+              vegaEmbed('#barCattle', bar3).then(function(result) {
+              }).catch(console.error);
+              </script>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+          <p>
+            This bar chart addresses the question raised in the previous section, showing that Queensland has by far the highest cattle numbers of any state.
+            <br><br> This suggests that a large proportion of Queensland's agricultural land is used for<span class="annotate">grazing</span>.
+          </p>
+        </div>
+      </div>        
+    </div>
+    <!-- Food Section -->
+    <p>--Food Products--</p>
+    <div class="FoodSection">
+      <h2>Wheat and Beef</h2>
+      <div class="diagramWrapper">
+          <div id="barFood"></div>
+          <script type="text/javascript">
+          var bar4 = "Js/barFood.vg.json";
+          vegaEmbed('#barFood', bar4).then(function(result) {
+          }).catch(console.error);
+          </script>
+      </div>
+      <p>CI stands for Confidence Interval, which gives a 95% estimated range for the true value.
+      <br>The chart uses the mean of this range for each food type. <span class="annotate">Cereal-based mixed dishes</span> stand at the top for both age groups. What does this food group represent?
+      </p>
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="diagramWrapper">
+            <div id="barCereal"></div>
+            <script type="text/javascript">
+            var bar5 = "Js/barCerealBased.vg.json";
+            vegaEmbed('#barCereal', bar5).then(function(result) {
+            }).catch(console.error);
+            </script>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+          <p>The cereal-based food group includes many foods made from <span class="annotate">wheat</span>, such as pasta, burgers, pizza, and tacos, which often contain <span class="annotate">beef</span> as part of their common versions. 
+          <br>These foods are widely consumed because they combine staple crops with commonly used livestock products.
+
+          <br><br>The most produced crops and livestock therefore play a major role in the everyday diet of Australians.
+          </p>
+
+        </div>
+      </div>      
+
+
+
+    </div>
+    <!-- Footer Section -->
+     <footer class="foot">
+      <h2>Metadata</h2>
+      <p>
+        Author: Dang Tran
+        <br>Date: 1/6/2026
+        <br>Authorship: Copyleft
+      </p>
+      <h2>
+        Sources:
+      </h2>
+      <p>
+        <a href="https://chartmaker.visualisingdata.com">Chart making guide</a>
+        <h3>ABS:</h3>
+        <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files">Australian Region Spatial Data</a>
+        <br> <a href="https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/latest-release">Winter crop production sale data</a>
+        <br> <a href="https://www.abs.gov.au/statistics/environment/environmental-accounts/national-land-account-experimental-estimates/latest-release">Agricultural land size data</a>
+        <br> <a href="https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-livestock/latest-release">Livestock number and value data</a>
+        <br> <a href="https://www.abs.gov.au/statistics/health/food-and-nutrition/food-and-nutrients/latest-release">Food consumption data</a>
+        <h3>agriculture.gov</h3>
+        <a href="https://www.bom.gov.au/climate/current/annual/aus/#tabs=Rainfall">Rain data</a>
+        <br> <a href="https://www.agriculture.gov.au/abares/aclump/land-use/catchment-scale-land-use-report?#download-data-tables">Agricultural land per state</a>
+        <h3>data.gov</h3>
+        <a href="https://data.gov.au/data/dataset/2016-soe-land-change-in-area-of-for-crops-and-pastures-under-different-tillage-practices-1996-2012/resource/53198fa8-911b-47b9-91a1-930aa62149dc">Farmland tillage data</a>
+      </p>
+     </footer>
+
+
+
+
+ </div>
 </body>
 
 </html>

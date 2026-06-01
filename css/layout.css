@@ -1,0 +1,13 @@
+html, body {
+    background-color: bisque;
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #f0dba6;
+    padding:20px;
+    border-radius: 10px;
+}
+

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Livestock product values in Australia (2020–21 to 2024–25)",
+
+  "data": {
+    "url": "../Data/livestockValue.csv",
+    "format": { "type": "csv" }
+  },
+
+  "width": 400,
+  "height": 250,
+  "background":"transparent",
+
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 60
+    }
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "axis": { "labelAngle": -30 }
+    },
+
+    "y": {
+      "field": "Value",
+      "type": "quantitative",
+      "axis": { "title": "Value ($m)" }
+    },
+
+    "color": {
+      "field": "Livestock_Product",
+      "type": "nominal",
+      "legend": { "title": "Livestock Product" }
+    },
+
+    "tooltip": [
+      { "field": "Livestock_Product", "type": "nominal", "title": "Product" },
+      { "field": "Year", "type": "ordinal" },
+      { "field": "Value", "type": "quantitative", "title": "Value ($m)" }
+    ]
+  },
+
+  "transform": [
+    {
+      "calculate": "datum.Livestock_Product",
+      "as": "product"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Breakdown of Agricultural Land Use (2020–21)",
+  "background":"transparent",
+
+  "data": {
+    "url": "../Data/AgriculturalLand.csv",
+    "format": { "type": "csv" }
+  },
+
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "Area",
+          "as": "totalArea"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.Area / datum.totalArea",
+      "as": "percent"
+    }
+  ],
+
+  "mark": {
+    "type": "arc",
+    "innerRadius": 0,
+    "tooltip": true
+  },
+
+  "encoding": {
+    "theta": {
+      "field": "Area",
+      "type": "quantitative"
+    },
+
+    "color": {
+      "field": "Land_use",
+      "type": "nominal",
+      "scale": {
+        "scheme": "category20"
+      }
+    },
+
+    "tooltip": [
+      { "field": "Land_use", "type": "nominal" },
+      { "field": "Area", "type": "quantitative", "title": "Area (million ha)" },
+      { "field": "percent", "type": "quantitative", "format": ".1%", "title": "Percent" }
+    ]
+  },
+
+  "view": {
+    "stroke": null
+  }
+}

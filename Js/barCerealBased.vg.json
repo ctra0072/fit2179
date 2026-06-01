@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Proportion of people consuming selected grain-based dishes (mean of 95% CI)",
+
+  "data": {
+    "url": "../Data/consumptionCerealBased.csv",
+    "format": { "type": "csv" }
+  },
+  "background":"transparent",
+
+  "transform": [
+    {
+      "calculate": "(toNumber(datum['CI Low (%)']) + toNumber(datum['CI High (%)'])) / 2",
+      "as": "Mean"
+    }
+  ],
+
+  "mark": "bar",
+
+  "encoding": {
+    "y": {
+      "field": "Food",
+      "type": "nominal",
+      "sort": "-x"
+    },
+    "x": {
+      "field": "Mean",
+      "type": "quantitative",
+      "title": "Proportion (%)"
+    }
+  }
+}

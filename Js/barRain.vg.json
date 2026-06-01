@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Average rainfall by Australian state (2025)",
+
+  "data": {
+    "url": "../Data/rainByState2025.csv",
+    "format": { "type": "csv" }
+  },
+
+  "width": 450,
+  "height": 300,
+  "background":"transparent",
+
+  "mark": {
+    "type": "bar",
+    "color": "steelblue",
+    "tooltip": true
+  },
+
+  "encoding": {
+    "x": {
+      "field": "State",
+      "type": "nominal",
+      "axis": {
+        "labelAngle": -35,
+        "labelAlign": "right",
+        "labelBaseline": "middle"
+      }
+    },
+
+    "y": {
+      "field": "RainAverage_mm",
+      "type": "quantitative",
+      "axis": {
+        "title": "Rainfall (mm)"
+      }
+    },
+
+    "tooltip": [
+      { "field": "State", "type": "nominal" },
+      { "field": "RainAverage_mm", "type": "quantitative", "title": "Rainfall (mm)" }
+    ]
+  }
+}

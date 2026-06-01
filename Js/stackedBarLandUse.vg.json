@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Agricultural Land vs Non-Agricultural Land",
+  "background":"transparent",
+
+  "data": {
+    "url": "../Data/LandUse.csv",
+    "format": { "type": "csv" }
+  },
+
+  "transform": [
+    {
+      "calculate": "trim(datum.Category)",
+      "as": "Category_clean"
+    },
+    {
+      "filter": "datum.Category_clean != ''"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "Area",
+          "as": "totalArea"
+        }
+      ],
+      "groupby": ["Year"]
+    },
+    {
+      "calculate": "datum.Area / datum.totalArea",
+      "as": "percent"
+    }
+  ],
+
+  "width": 500,
+  "height": 300,
+
+  "mark": {
+    "type": "bar",
+    "tooltip": true
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "axis": { "labelAngle": 0 }
+    },
+
+    "y": {
+      "field": "Area",
+      "type": "quantitative",
+      "stack": "zero"
+    },
+
+    "color": {
+      "field": "Category_clean",
+      "type": "nominal",
+      "scale": {
+        "range": ["#4CAF50", "#9E9E9E"]
+      },
+      "legend":null
+    },
+
+    "tooltip": [
+      { "field": "Year", "type": "ordinal" },
+      { "field": "Category_clean", "type": "nominal", "title": "Category" },
+      { "field": "Area", "type": "quantitative", "title": "Area (million ha)" },
+      {
+        "field": "percent",
+        "type": "quantitative",
+        "format": ".1%",
+        "title": "Share"
+      }
+    ]
+  }
+}
