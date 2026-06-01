@@ -8,7 +8,7 @@
     },
     "background":"transparent",
     "data": {
-        "url": "../Js/australia.json",
+        "url": "./Js/australia.json",
         "format": {
             "type": "topojson",
             "feature": "STE_2021_AUST_GDA2020"
